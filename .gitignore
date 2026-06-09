@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# local input data (not redistributed; see README)
+data/*.csv
+# generated outputs
+clean_traffic_*.csv
+*.png
+*.pdf
+*.svg
+!figures/*.py

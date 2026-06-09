@@ -1,0 +1,8 @@
+Method,Traffic_AllNSW,Traffic_GreaterSydney,PublicTransport_AllNSW
+M1,+0.1 pp slowdown,-1.6 pp slowdown,-0.5 pp slowdown
+M2,+0.1 pp (p=0.88),-1.6 pp (p=0.034),-0.8 pp (p=0.51)
+M3,"-5.8% at peak (p_lvl=0.89, p_slp=0.016)","+0.4% at peak (p_lvl=0.30, p_slp=0.370)","-11.6% at peak (p_lvl=0.86, p_slp=<0.001)"
+M4,"+1.4% at peak (p_lvl=0.21, p_slp=0.627)","+0.3% at peak (p_lvl=0.03, p_slp=0.104)","-10.8% at peak (p_lvl=0.89, p_slp=0.084)"
+M5,+0.1% cum.; -1.6% peak-week,-1.6% cum.; -2.3% peak-week,-0.8% cum.; +0.2% peak-week
+M6,No 5% break (sup-F=4.44; 03 Mar 2026),No 5% break (sup-F=3.85; 20 Mar 2026),No 5% break (sup-F=5.37; 23 Feb 2026)
+M7,eta=-0.027 (p=0.12),eta=-0.022 (p=0.11),eta=+0.006 (p=0.82)
