@@ -30,14 +30,14 @@ figures/
   fig_main_and_SI.py            Main (cleaned) + SI (raw, pre-cleaning) figures.
   fig_station_contact_sheet.py  Per-station raw-vs-cleaned QC contact sheet.
 data/
-  README.md                 Where to download the three input files.
+  README.md                 Three input files and where to download the original data.
 requirements.txt
 LICENSE                     MIT
 ```
 
 ## Data
-The three input files are **not** included (they are public TfNSW data); see
-`data/README.md` for download links. Place them in the repository root (or in
+The three input files are included. The data in its original and raw form are public TfNSW data; see
+`data/README.md`. Place them in the repository root (or in
 `data/` and update the path constants at the top of `fuel_shock_analysis.py`).
 
 ## Reproduce the results
