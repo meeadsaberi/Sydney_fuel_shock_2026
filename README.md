@@ -17,7 +17,7 @@ the comparison group. Six further specifications (M1–M4, M6, M7) are reported
 as sensitivity checks; they are seven parameterisations of one dataset, not
 seven independent sources of evidence.
 
-## Summary Results
+## Summary results
 Statewide weekday light-vehicle traffic was essentially unchanged (+0.2%
 cumulative, −2.0% peak-week); Greater Sydney showed a small reduction of
 **1.3–2.3%** around the price peak (−1.3% cumulative, −2.3% peak-week);
