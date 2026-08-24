@@ -6,20 +6,33 @@ shock"* (Blache & Saberi, rCITI, UNSW Sydney).
 
 The analysis quantifies how road traffic and public transport patronage in New
 South Wales responded to the early-2026 fuel price shock (Sydney petrol rose
-from ~152 to ~249 c/L, peaking 26 March 2026), using seven complementary
-statistical and time-series methods on a weekday-aligned 2025-vs-2026 sample
-(9 February – 31 March).
+from ~152 to ~249 c/L, peaking 26 March 2026), on a weekday-aligned
+2025-vs-2026 sample (9 February – 31 March) restricted to **light vehicles**.
+
+Primary inference uses a single specification, the **level-baseline
+counterfactual (M5)**: each 2026 weekday is compared with the matched 2025
+weekday, and the mean pre-shock ratio defines a no-shock counterfactual. This
+is a difference in differences in ratio form, with the matched 2025 series as
+the comparison group. Six further specifications (M1–M4, M6, M7) are reported
+as sensitivity checks; they are seven parameterisations of one dataset, not
+seven independent sources of evidence.
 
 ## Headline result
-Statewide weekday traffic was essentially unchanged; Greater Sydney showed a
-small (~1.5–2%) reduction around the price peak; public transport patronage
-showed no positive substitution response.
+Statewide weekday light-vehicle traffic was essentially unchanged (+0.2%
+cumulative, −2.0% peak-week); Greater Sydney showed a small reduction of
+**1.3–2.3%** around the price peak (−1.3% cumulative, −2.3% peak-week);
+statewide public transport patronage showed no positive substitution response
+(−0.8% cumulative, +0.2% peak-week).
+
+Balanced panel after cleaning: 92 station–direction units statewide, 15 in
+Greater Sydney, over 41 aligned weekdays.
 
 ## Repository structure
 ```
 fuel_shock_analysis.py      Single self-contained pipeline: read raw -> clean ->
                             M1-M7 -> autocorrelation -> Table 1. Run this to
-                            reproduce every number in the paper.
+                            reproduce every number in the paper. Light
+                            vehicles only (classification_seq == 2).
 fuel_shock_analysis.ipynb   Same pipeline as a Google Colab notebook (sectioned,
                             with an upload cell for the three input files).
 table1_final.csv            Expected Table 1 output (for verification).
@@ -36,8 +49,9 @@ LICENSE                     MIT
 ```
 
 ## Data
-The three input files are included. The data in its original and raw form are public TfNSW data; see
-`data/README.md`. Place them in the repository root (or in
+The three input files are included in `data/`. They are public TfNSW and Opal
+data; see `data/README.md` for provenance and the vehicle-class coding. Place
+them in the repository root (or in
 `data/` and update the path constants at the top of `fuel_shock_analysis.py`).
 
 ## Reproduce the results

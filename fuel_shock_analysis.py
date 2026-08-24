@@ -87,6 +87,7 @@ ANOM_FRAC = 0.80                         # symmetric data-quality screen thresho
 # ---- traffic-cleaning constants
 HOURS     = [f"hour_{h:02d}" for h in range(24)]
 COVERAGE  = 0.90   # a unit must be matched (both years) on >=90% of aligned weekdays
+LIGHT_CLASS = 2    # TfNSW classifier coding: 2 = LIGHT vehicles, 3 = HEAVY
 
 # ---- Quandt-Andrews (1993) sup-F critical values
 ANDREWS_CV = {"10%": 9.84, "5%": 11.79, "1%": 16.45}
@@ -114,14 +115,24 @@ def read_raw(region_filter=None):
 # 2026/2025 ratio. We reconstruct on a balanced panel of station-direction
 # units so that every unit is compared only with itself across years, which
 # makes the 2026/2025 ratio immune to constant proportional undercount.
-# Rules: (1) weekdays only; (2) impute missing hours from each counter's own
-# hour-of-day profile; (3) unit = station x direction, classes summed;
-# (4) tolerate a missing heavy class; (5) same-weekday alignment to a year-2000
+# Rules: (0) LIGHT VEHICLES ONLY (classification_seq == 2), because diesel rose
+# ~91% against ~50% for petrol, so freight faced a different shock from the car
+# travel this study interprets; (1) weekdays only; (2) impute missing hours from
+# each counter's own hour-of-day profile; (3) unit = station x direction;
+# (4) classifier stations only (a station must report the light class);
+# (5) same-weekday alignment to a year-2000
 # anchor; (6) keep units matched in both years on >=90% of aligned weekdays;
 # (7) metric = MEAN weekday volume per unit (composition-stable).
 # ============================================================================
 def build_traffic_panel(region_filter, out_path, label):
     df = read_raw(region_filter)
+
+    # Rule 0: restrict to light vehicles. Only classifier stations report the
+    # light/heavy split, so this also restricts the panel to those stations.
+    n_before = df["station_id"].nunique()
+    df = df[df["classification_seq"] == LIGHT_CLASS].copy()
+    n_after = df["station_id"].nunique()
+    print(f"  [light] {label}: {n_after}/{n_before} stations report the light class")
 
     # Rule 2: impute missing hours by counter hour-of-day profile
     g1 = ["station_id", "cardinal_direction_seq", "classification_seq", "year"]
@@ -136,7 +147,7 @@ def build_traffic_panel(region_filter, out_path, label):
     # Rule 1: weekdays only
     df = df[df["date"].dt.dayofweek < 5].copy()
 
-    # Rules 3 & 4: unit = station x direction; sum present classes
+    # Rule 3: unit = station x direction (light class only)
     unit = (df.groupby(["station_id", "cardinal_direction_seq", "year", "date"])
               ["rec_total"].sum().reset_index(name="vol"))
     unit["uid"] = unit["station_id"] + "_" + unit["cardinal_direction_seq"].astype(str)

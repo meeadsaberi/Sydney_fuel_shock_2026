@@ -1,8 +1,12 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-# local input data (not redistributed; see README)
+# local input data
 data/*.csv
+# ...but the three inputs needed to reproduce Table 1 ARE tracked:
+!data/raw_feb_mar_2025_2026.csv
+!data/opal_all_nsw_feb_mar_2025_2026_aligned.csv
+!data/Fuel_price.csv
 # generated outputs
 clean_traffic_*.csv
 *.png
