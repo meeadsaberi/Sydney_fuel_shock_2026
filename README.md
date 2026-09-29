@@ -1,8 +1,6 @@
 # Sydney fuel price shock (early 2026): traffic and public transport response
 
-Reproducible code for the paper *"Observational evidence of a limited driving
-reduction without public transport substitution during a Sydney fuel price
-shock"* (Blache & Saberi, rCITI, UNSW Sydney).
+Reproducible code for the paper *"Observational evidence of a limited driving reduction with no detectable public transport increase during a Sydney fuel price shock"* (Blache & Saberi, rCITI, UNSW Sydney).
 
 The analysis quantifies how road traffic and public transport patronage in New
 South Wales responded to the early-2026 fuel price shock (Sydney petrol rose
